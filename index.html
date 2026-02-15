@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EasyHisab</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0px;
+        padding: 0;
+        text-align: center;
+        background-color: #f0f2f5;
+        height: 100vh;
+transition: background-color 0.5s, color 0.5s;
+    }
+/* Day Mode Styles */
+        body.day-mode {
+            background-color: #f0f2f5;
+            color: #000000;
+
+
+
+    .menu-bar {
+    position: fixed; /* Keep it fixed at the top */
+position: behind;
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width of the viewport */
+height: 45px;
+    background-color: #007BFF;
+    color: white;
+    padding: 5px;
+    display: flex;
+align-items: center;
+    justify-content: left;
+    z-index: 1000; /* Ensure it's above other elements */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+animation: slideDown 0.8s ease-out; /* Apply the slide-down animation */
+}
+    .menu-bar a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 8px 15px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    .menu-bar a:hover {
+        background-color: #0056b3;
+    }
+
+
+        .logo {
+            max-width: 50px;
+
+        }
+    .search-container {
+      margin: 0px 0;
+      float: right; /* Align the container to the left */
+      background-color: #f0f2f5;
+      border-radius: 20px;
+      padding: 5px 10px;
+      width: 300px;}
+ 
+     .search-container img {
+       float: left;
+            height: 40px;
+            width: 40px;
+            margin-right: 5px;
+            border-radius: 50%;
+        }
+      .search-container input {
+            border: none;
+            outline: none;
+            background-color: transparent;
+            color: #fff;
+            font-size: 16px;
+            width: 100%;
+height:20px;
+        }
+       .search-container input::placeholder {
+            color: #aaa;}
+ .bouncing-button {
+      display: inline-block;
+      padding: 15px 30px;
+      font-size: 18px;
+      color: white;
+      background-color: #007BFF;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-weight: bold;
+      transition: transform 0.2s ease-in-out;
+      animation: bounce 2s infinite;
+    }
+
+
+.bouncing-button:hover {
+      transform: scale(1.1);
+      background-color: #0056b3;
+    }
+
+
+
+   .header-container {
+             text-align: center;
+             background-color:White;
+color:#a9acb0;
+             padding: 0px;
+             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+             display: flex;
+             flex-direction: column; /* Stack headings vertically */
+             align-items: center; /* Center contents horizontally */
+             justify-content: center;
+             border-radius: 15px; /* Rounded corners for the box */
+             width: 100%;
+             height: 80px;
+             margin: 20px auto; /* Center the box */
+    }  
+   
+
+
+   table {
+           width: 90%;
+           margin: 15px auto;
+           border-collapse: collapse;
+           background-color:white;/*  background for the table */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Table shadow */
+            border-radius: 15px;
+         }
+
+        th {
+           background-color: #00a65a; /* Green background for the header */
+           color: white; /* White text for the header */
+           padding: 5px;
+           border: 1.5px solid #f0f2f5;
+           text-align: center;
+        }
+
+        td {
+           padding: 10px;
+           border: 1.5px solid #f0f2f5;
+           text-align: center;
+        }
+
+.highlight {
+        background-color: #AEC6CF!important;
+        }
+.form-container {
+        background-color:#007BFF;
+        padding: 20px;
+        width: 30%;
+        margin-top: 80px;
+margin-left: 500px;
+margin-bottom: 10px;
+
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        text-align: left; /* Align form elements to the left inside the box */
+    }
+
+    .form-group {
+   
+        margin-bottom: 10px;
+        text-align: left;
+        color: white;
+        font-weight: bold;
+    }
+
+    .form-group label {
+        display: inline-block;
+        width: 220px;
+        text-align: left;
+    }
+
+    .form-group input, .form-group select {
+        padding: 5px;
+border-color:transparent;
+border-radius:20px;
+    }
+
+
+.footer {
+        text-align: center;
+        padding: 10px 0;
+        background-color: #ffffff;
+        margin-top: 10px;
+    }
+
+    }
+
+        /* Night Mode Styles */
+        body.night-mode {
+             background-color: #1c1c1d;
+             color: #6ab1fb;
+
+
+
+
+/* Apply the animation to the menu bar */
+.menu-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+height: 45px;
+    background-color: #252728 !important;
+    color: white;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.8s ease-out; /* Apply the slide-down animation */
+}
+
+    .menu-bar a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 8px 15px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    .menu-bar a:hover {
+        background-color: #0056b3;
+    }
+
+
+
+        .logo {
+            max-width: 50px;
+float: left;
+
+        }
+
+
+        .tooltip {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #fff;
+            color: #000;
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-size: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .menu-container:hover .tooltip {
+            opacity: 1;
+        }
+
+
+
+
+    .search-container {
+      margin: 0px 0;
+      float: right; /* Align the container to the left */
+      background-color: #444;
+      border-radius: 20px;
+      padding: 5px 10px;
+      width: 300px;}
+ 
+     .search-container img {
+       float: left;
+            height: 40px;
+            width: 40px;
+            margin-right: 5px;
+            border-radius: 50%;
+        }
+      .search-container input {
+            border: none;
+            outline: none;
+            background-color: transparent;
+            color: #fff;
+            font-size: 16px;
+            width: 100%;
+height: 20px;
+        }
+       .search-container input::placeholder {
+            color: #aaa;}
+
+
+ .bouncing-button {
+      display: inline-block;
+      padding: 15px 30px;
+      font-size: 18px;
+      color: #333334;
+      background-color: #0056b3;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-weight: bold;
+      transition: transform 0.2s ease-in-out;
+      animation: bounce 2s infinite;
+    }
+.bouncing-button:hover {
+      transform: scale(1.1);
+      background-color: #000000 ;
+    }
+
+.header-container {
+             text-align: center;
+             background-color:white;
+color:#a9acb0;
+             padding: 0px;
+             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+             display: flex;
+             flex-direction: column; /* Stack headings vertically */
+             align-items: center; /* Center contents horizontally */
+             justify-content: center;
+             border-radius: 15px; /* Rounded corners for the box */
+             width: 10%;
+             height: 80px;
+             margin: 20px auto; /* Center the box */
+    }  
+         
+
+        table {
+           width: 90%;
+           margin: 15px auto;
+           border-collapse: collapse;
+  color: #ffffff;
+           background-color:#333334;/*  background for the table */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Table shadow */
+            border-radius: 15px;
+         }
+
+        th {
+           background-color: #0056b3; /* Green background for the header */
+           color: white; /* White text for the header */
+           padding: 5px;
+           border: 1.5px solid #a9acb0;
+ 
+           text-align: center;
+        }
+
+        td {
+           padding: 10px;
+           border: 1.5px solid #a9acb0;
+           text-align: center;
+ 
+        }
+
+    .highlight {
+           background: #253a52;
+          color: #6ab1fb;
+        }
+
+
+.form-container {
+        background-color: #252728;
+        padding: 20px;
+        width: 30%;
+        margin-top: 80px;
+margin-left: 500px;
+margin-bottom: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+border-radius: 15px;
+        text-align: left; /* Align form elements to the left inside the box */
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+        text-align: left;
+        color:#a9acb0 ;
+        font-weight: bold;
+    }
+
+    .form-group label {
+        display: inline-block;
+        width: 220px;
+        text-align: left;
+    }
+
+    .form-group input, .form-group select {
+        padding: 5px;
+background-color: #333334;
+color: White;
+border-color:transparent;
+border-radius:20px;
+    }
+
+
+
+
+
+.footer {
+        text-align: center;
+        padding: 5px 0;
+        background-color: #333334;
+        margin-top: 10px;
+    }
+
+        }
+
+        .switch-btn {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        .switch-btn:focus {
+            outline: none;
+        }
+
+        .switch-btn .icon {
+            transition: transform 0.3s;
+        }
+
+        .switch-btn.night-mode .icon {
+            transform: rotate(180deg);
+        }
+
+   /* Add keyframes for the opening animation */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+   
+
+   
+
+   
+
+   
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-15px);
+      }
+      60% {
+        transform: translateY(-10px);
+      }
+    }
+
+   
+
+    .scene {
+      position: relative;
+      width: 300px;
+      height: 180px;
+      margin: 20px auto;
+    }
+
+    .box {
+      position: absolute;
+      bottom: 0;
+      width: 300px;
+      height: 100px;
+ color: White;
+      background:  #e64e4e;
+ font-weight: bold; /* Make text bold for emphasis */
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transform-origin: center;
+      animation: balance 2s infinite ease-in-out;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cat {
+      position: absolute;
+      bottom: 100px;
+      width: 70px;
+      height: 50px;
+      background: #ffce79;
+      border-radius: 50% 50% 40% 40%;
+      left: 50px;
+      transform: translateY(0);
+      animation: peek 3s infinite;
+    }
+.cat-ear {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: #ffce79;
+      border-radius: 50%;
+      top: -20px;
+      left: 10px;
+      transform: rotate(-45deg);
+      border: 5px solid #a78b71; /* Ear outline */
+    }
+
+    .cat-ear.right {
+      left: auto;
+      right: 10px;
+      transform: rotate(45deg);
+    }
+
+    .cat::before {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border-radius: 50%;
+      top: 10px;
+      left: 15px;
+      box-shadow: 25px 0 #fff;
+    }
+
+    .cat::after {
+      content: "";
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: #333;
+      border-radius: 50%;
+      top: 15px;
+      left: 20px;
+      box-shadow: 30px 0 #333;
+    }
+
+    @keyframes balance {
+      0%, 100% {
+        transform: rotate(0deg);
+      }
+      50% {
+        transform: rotate(5deg);
+      }
+    }
+
+    @keyframes peek {
+      0%, 20%, 100% {
+        transform: translateY(0);
+      }
+      10% {
+        transform: translateY(-50px);
+      }
+    }
+
+/* Styling for the single Action button */
+.action-btn {
+  font-family: Arial, sans-serif;
+  background-color: #29b6f6; /* Light blue color */
+  color: white; /* White text */
+  padding: 4px 5px; /* Padding for the button */
+  font-size: 11px; /* Font size */
+ 
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  text-align: center; /* Center text alignment */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Slight shadow for depth */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover effect for the Action button */
+.action-btn:hover {
+  background-color: #1e88e5; /* Darker blue on hover */
+}
+
+
+.acton-btn {
+  font-family: Arial, sans-serif;
+  background-color: #e64e4e; /* Light blue color */
+  color: white; /* White text */
+  padding: 4px 5px; /* Padding for the button */
+  font-size: 11px; /* Font size */
+ 
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  text-align: center; /* Center text alignment */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Slight shadow for depth */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover effect for the Action button */
+.acton-btn:hover {
+  background-color: #1e88e5; /* Darker blue on hover */
+}
+
+
+</style>
+</head>
+
+
+<body class="day-mode">
+
+ 
+
+
+ <div class="menu-bar">
+ 
+ <a  href="file:///C:/Users/gheow/Documents/loyality.html" target="_blank" rel="noopener noreferrer"><img src="C:\Users\gheow\Downloads\Logo1.png" alt="Logo" class="logo"></a>
+
+ <div class="search-container">
+ 
+ 
+ <input type="text" id="searchInput" placeholder="Search with AI...">
+   
+  </div>
+ 
+   <button class="switch-btn" id="themeToggle">
+        <span class="icon">🌞</span>
+    </button>
+ 
+   
+ <div class="menu">
+    <a href="file:///C:/Users/gheow/Documents/loyality.html" target="_blank">Home</a>
+    <a href="#services">Services</a>
+    <a href="#products">Products</a>
+    <a href="#contact">Contact</a>
+    <a href="file:///C:/Users/gheow/Documents/about.html" target="_blank" rel="noopener noreferrer">About</a>
+
+
+
+</div>
+ 
+ 
+ 
+
+ 
+</div>
+
+
+
+
+
+ <div class="form-container">
+
+  <div class="form-group">
+    <label for="sellReportText">▷বিক্রিত পণ্যের নাম:</label>
+    <input type="text" id="sellReportText" placeholder="পণ্যের নাম ">
+  </div>
+  <div class="form-group">
+    <label for="sellReportAmount">টাকার পরিমাণ:</label>
+    <input type="number" id="sellReportAmount" placeholder="বিক্রিত পণ্যের পরিমাণ">
+  </div>
+
+  <div class="form-group">
+    <label for="noteText">▷নোট(যদি থাকে):</label>
+    <input type="text" id="noteText" placeholder="নোট লিখুন">
+  </div>
+  <div class="form-group">
+    <label for="noteAmount">টাকার পরিমাণ(+/-):</label>
+    <input type="number" id="noteAmount" placeholder="নোট এর পরিমাণ">
+  </div>
+
+  <div class="form-group">
+    <label for="expenseText">▷খরচের কারণ:</label>
+    <input type="text" id="expenseText" placeholder="খরচের বিবরন দিন">
+  </div>
+  <div class="form-group">
+    <label for="expenseAmount">খরচের পরিমাণ:</label>
+    <input type="number" id="expenseAmount" placeholder="খরচের পরিমাণ উল্লেখ করুন">
+  </div>
+
+  <div class="form-group">
+    <label for="withdrawAmount">▶উত্তলন পরিমাণ:</label>
+    <input type="number" id="withdrawAmount" placeholder="উত্তলন অর্থের পরিমাণ">
+  </div>
+  <div class="form-group">
+    <label for="withdrawOption">উত্তলন হতে:</label>
+    <select id="withdrawOption">
+      <option value="cash">ক্যাশের টাকা</option>
+      <option value="software">সফটওয়্যার ব্যালেন্স</option>
+      <option value="both">Both</option>
+    </select>
+  </div >
+</div>
+  <button class="bouncing-button" onclick="updateBalance()">Submit</button>
+<div class="scene">
+    <div class="box">
+
+      <div class="cat">
+       
+      </div>
+ <p>Cash Balance: <span id="cashBalance">0.00</span> Tk.</p>
+ <p>Software Balance: <span id="softBalance">0.00</span>  Tk.</p>
+    </div>
+
+  </div>
+ 
+ 
+ 
+   <script>
+    document.getElementById('searchButton').addEventListener('click', function () {
+      // Clear previous highlights
+      const highlightedElements = document.querySelectorAll('.highlight');
+      highlightedElements.forEach(el => {
+        el.classList.remove('highlight');
+      });
+
+      // Get the search term
+      const searchTerm = document.getElementById('searchInput').value.trim();
+      if (searchTerm) {
+        // Search and highlight text
+        const bodyText = document.body.innerHTML;
+        const regex = new RegExp(`(${searchTerm})`, 'gi');
+        document.body.innerHTML = bodyText.replace(regex, `<span class="highlight">$1</span>`);
+      }
+    });
+  </script>
+ 
+   
+ 
+     <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        // Toggle between day and night mode
+        themeToggle.addEventListener('click', () => {
+            if (body.classList.contains('day-mode')) {
+                body.classList.remove('day-mode');
+                body.classList.add('night-mode');
+                themeToggle.innerHTML = '<span class="icon">🌙</span>';
+            } else {
+                body.classList.remove('night-mode');
+                body.classList.add('day-mode');
+                themeToggle.innerHTML = '<span class="icon">🌞</span>';
+            }
+        });
+    </script>
+
+  <script>
+    function updateBalance() {
+      var cashBalance = parseFloat(document.getElementById('sellReportAmount').value) + parseFloat(document.getElementById('noteAmount').value) - parseFloat(document.getElementById('expenseAmount').value) - parseFloat(document.getElementById('withdrawAmount').value);
+      document.getElementById('cashBalance').innerText = cashBalance.toFixed(2);
+    }
+  </script>
+
+
+  <table>
+    <thead>
+      <tr>
+        <th>SL</th>
+        <th>Date</th>
+        <th>Sell Report</th>
+        <th>Note</th>
+        <th>Expense</th>
+        <th>Withdraw</th>
+        <th>Withdraw Option</th>
+        <th>Updated Cash Balance</th>
+        <th>Updated Software Balance</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="reportTable">
+      <!-- Data will be appended here -->
+    </tbody>
+  </table>
+ 
+  <div class="footer">
+    <p>&copy; 2024 EazyHisab. All rights reserved. Developed By Soishob kumar Roy</p>
+  </footer>
+
+  <script>
+    let cashBalance = 0.00;
+    let softBalance = 0.00;
+    let sl = 1;
+
+    // Load data from localStorage on page load
+    window.onload = () => {
+      const savedData = JSON.parse(localStorage.getItem('transactions')) || [];
+      const highlightedRows = JSON.parse(localStorage.getItem('highlightedRows')) || [];
+     
+      if (savedData.length) {
+        savedData.slice(-100000000000).forEach((entry) => addRow(entry, false, highlightedRows));
+        sl = savedData.length + 1;
+        cashBalance = parseFloat(localStorage.getItem('cashBalance')) || 0.00;
+        softBalance = parseFloat(localStorage.getItem('softBalance')) || 0.00;
+        document.getElementById('cashBalance').textContent = cashBalance.toFixed(2);
+        document.getElementById('softBalance').textContent = softBalance.toFixed(2);
+      }
+    };
+
+    function updateBalance() {
+      const sellReportText = document.getElementById('sellReportText').value.trim();
+      const sellReportAmount = parseFloat(document.getElementById('sellReportAmount').value) || 0;
+      const noteText = document.getElementById('noteText').value.trim();
+      const noteAmount = parseFloat(document.getElementById('noteAmount').value) || 0;
+      const expenseText = document.getElementById('expenseText').value.trim();
+      const expenseAmount = parseFloat(document.getElementById('expenseAmount').value) || 0;
+      const withdrawAmount = parseFloat(document.getElementById('withdrawAmount').value) || 0;
+      const withdrawOption = document.getElementById('withdrawOption').value;
+      const currentDate = new Date().toLocaleDateString();
+
+      softBalance += sellReportAmount;
+      cashBalance += sellReportAmount;
+      cashBalance += noteAmount;
+      cashBalance -= expenseAmount;
+
+      if (withdrawOption === "cash") cashBalance -= withdrawAmount;
+      else if (withdrawOption === "software") softBalance -= withdrawAmount;
+      else if (withdrawOption === "both") {
+        cashBalance -= withdrawAmount;
+        softBalance -= withdrawAmount;
+      }
+
+      document.getElementById('cashBalance').textContent = cashBalance.toFixed(2);
+      document.getElementById('softBalance').textContent = softBalance.toFixed(2);
+
+      const entry = {
+        sl: sl++,
+        date: currentDate,
+        sellReport: `${sellReportText} (${sellReportAmount.toFixed(2)})`,
+        note: `${noteText} (${noteAmount.toFixed(2)})`,
+        expense: `${expenseText} (${expenseAmount.toFixed(2)})`,
+        withdraw: withdrawAmount.toFixed(2),
+        withdrawOption: withdrawOption,
+        updatedCash: cashBalance.toFixed(2),
+        updatedSoft: softBalance.toFixed(2),
+      };
+
+      addRow(entry, true);
+
+      // Clear inputs
+      document.querySelectorAll('input').forEach((input) => (input.value = ''));
+    }
+
+    function addRow(entry, save = false, highlightedRows = []) {
+      const table = document.getElementById('reportTable');
+      const row = table.insertRow();
+      row.innerHTML = `
+        <td>${entry.sl}</td>
+        <td>${entry.date}</td>
+        <td>${entry.sellReport}</td>
+        <td>${entry.note}</td>
+        <td>${entry.expense}</td>
+        <td>${entry.withdraw}</td>
+        <td>${entry.withdrawOption}</td>
+        <td>${entry.updatedCash}</td>
+        <td>${entry.updatedSoft}</td>
+        <td>
+
+
+
+          <button class="action-btn" onclick="toggleHighlight(this, ${entry.sl})">Highlight</button>
+          <button class="acton-btn" onclick="deleteRow(this, ${entry.sl})">Delete</button>
+        </td>
+      `;
+
+      if (highlightedRows.includes(entry.sl)) {
+        row.classList.add('highlight');
+      }
+
+      if (save) {
+        saveData(entry);
+      }
+    }
+
+    function toggleHighlight(button, sl) {
+      const row = button.parentElement.parentElement;
+      row.classList.toggle('highlight');
+      const highlightedRows = JSON.parse(localStorage.getItem('highlightedRows')) || [];
+     
+      if (row.classList.contains('highlight')) {
+        highlightedRows.push(sl);
+      } else {
+        const index = highlightedRows.indexOf(sl);
+        if (index !== -1) highlightedRows.splice(index, 1);
+      }
+      localStorage.setItem('highlightedRows', JSON.stringify(highlightedRows));
+    }
+
+    function saveData(entry) {
+      const savedData = JSON.parse(localStorage.getItem('transactions')) || [];
+      savedData.push(entry);
+      localStorage.setItem('transactions', JSON.stringify(savedData));
+      localStorage.setItem('cashBalance', cashBalance.toFixed(2));
+      localStorage.setItem('softBalance', softBalance.toFixed(2));
+    }
+
+    function deleteRow(button, sl) {
+      const row = button.parentElement.parentElement;
+      row.remove();
+      let savedData = JSON.parse(localStorage.getItem('transactions')) || [];
+      savedData = savedData.filter((entry) => entry.sl !== sl);
+      localStorage.setItem('transactions', JSON.stringify(savedData));
+    }
+  </script>
+</body>
+</html>
